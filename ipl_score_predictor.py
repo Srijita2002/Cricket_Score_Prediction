@@ -4,14 +4,15 @@ import math
 import numpy as np
 import pickle
 import streamlit as st
-
+import bz2file as bz2
 #SET PAGE WIDE
 st.set_page_config(page_title='IPL_Score_Predictor',layout="centered")
 
 #Get the ML model 
 
-filename='ml_model.pkl'
-model = pickle.load(open(filename,'rb'))
+with bz2.BZ2File('compressed_model.pbz2', 'rb') as f:
+    # Use pickle.load to deserialize the data
+      model = pickle.load(f)
 
 #Title of the page with CSS
 
