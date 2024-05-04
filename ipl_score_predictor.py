@@ -15,7 +15,6 @@ with bz2.BZ2File('compressed_model.pbz2', 'rb') as f:
     # Use pickle.load to deserialize the data
      model = pickle.load(f)
 
-compressed_pickle('compressed_model', model)
 def decompress_pickle(file):
     data = bz2.BZ2File(file, 'rb')
     data = pickle.load(data)
