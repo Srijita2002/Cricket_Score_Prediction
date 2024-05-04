@@ -11,14 +11,9 @@ import streamlit as st
 st.set_page_config(page_title='IPL_Score_Predictor',layout="centered")
 
 #Get the ML model 
-with open('ml_model.pkl', 'rb') as file:
-      model = pickle.load(file)
-
-# Compress and save the loaded model
-def compressed_pickle(title, data):
-    with bz2.BZ2File(title + '.pbz2', 'w') as f:
-        pickle.dump(data, f)
-
+with bz2.BZ2File('compressed_model.pbz2', 'rb') as f:
+    # Use pickle.load to deserialize the data
+     model = pickle.load(f)
 
 compressed_pickle('compressed_model', model)
 def decompress_pickle(file):
